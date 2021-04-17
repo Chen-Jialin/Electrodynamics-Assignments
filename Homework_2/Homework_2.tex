@@ -1,0 +1,182 @@
+%Electrodynamics Homework_2
+\documentclass[10pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\title{Electrodynamics Homework\_2}
+\author{陈稼霖 \and 45875852}
+\date{2019.2.25}
+\begin{document}
+\maketitle
+\section{}
+Let
+\[
+r=\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}
+\]
+be the distance between the point of the source $\vec{x}'$ and the point to measure the field $\vec{x}$. Furthermore, let us define $\vec{r}=\vec{x}'-\vec{x}$. Show the following relations
+\subsection{}
+\[
+\nabla r=-\nabla'r=\frac{\vec{r}}{r}
+\]
+\textbf{pf:}
+\footnotesize\begin{align*}
+\nabla r=&\frac{\partial\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}{\partial x}\vec{i}+\frac{\partial\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}{\partial y}\vec{j}\\
+&+\frac{\partial\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}{\partial z}\vec{k}\\
+=&\frac{x-x'}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\vec{i}+\frac{y-y'}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\vec{j}\\
+&+\frac{z-z'}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\vec{k}\\
+=&\frac{(x-x')\vec{i}+(y-y')\vec{j}+(z-z')\vec{k}}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\\
+=&\frac{\vec{r}}{r}
+\end{align*}
+\begin{align*}
+-\nabla'r=&-\frac{\partial\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}{\partial x'}\vec{i}-\frac{\partial\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}{\partial y'}\vec{j}\\
+&-\frac{\partial\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}{\partial z'}\vec{k}\\
+=&\frac{x-x'}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\vec{i}+\frac{y-y'}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\vec{j}\\
+&+\frac{z-z'}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\vec{k}\\
+=&\frac{(x-x')\vec{i}+(y-y')\vec{j}+(z-z')\vec{k}}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\\
+=&\frac{\vec{r}}{r}
+\end{align*}\normalsize
+\[
+\therefore\nabla r=-\nabla'r=\frac{\vec{r}}{r}
+\]
+\subsection{}
+\[
+\nabla\frac{1}{r}=-\nabla'\frac{1}{r}=-\frac{\vec{r}}{r^3}
+\]
+\textbf{pf:}
+\footnotesize\begin{align*}
+\nabla\frac{1}{r}=&\frac{\partial\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}}{\partial x}\vec{i}+\frac{\partial\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}}{\partial y}\vec{j}\\
+&+\frac{\partial\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}}{\partial z}\vec{k}\\
+=&-\frac{x-x'}{[(x-x')^2+(y-y')^2+(z-z')^2]^{\frac{3}{2}}}\vec{i}-\frac{y-y'}{[(x-x')^2+(y-y')^2+(z-z')^2]^{\frac{3}{2}}}\vec{j}\\
+&-\frac{z-z'}{[(x-x')^2+(y-y')^2+(z-z')^2]^{\frac{3}{2}}}\vec{k}\\
+=&-\frac{(x-x')\vec{i}+(y-y')\vec{j}+(z-z')\vec{k}}{[(x-x')^2+(y-y')^2+(z-z')^2]^{3/2}}\\
+=&-\frac{\vec{r}}{r^3}
+\end{align*}
+\begin{align*}
+-\nabla'\frac{1}{r}=&-\frac{\partial\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}}{\partial x'}\vec{i}-\frac{\partial\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}}{\partial y'}\vec{j}\\
+&-\frac{\partial\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}}{\partial z'}\vec{k}\\
+=&-\frac{x-x'}{[(x-x')^2+(y-y')^2+(z-z')^2]^{\frac{3}{2}}}\vec{i}-\frac{y-y'}{[(x-x')^2+(y-y')^2+(z-z')^2]^{\frac{3}{2}}}\vec{j}\\
+&-\frac{z-z'}{[(x-x')^2+(y-y')^2+(z-z')^2]^{\frac{3}{2}}}\vec{k}\\
+=&-\frac{(x-x')\vec{i}+(y-y')\vec{j}+(z-z')\vec{k}}{[(x-x')^2+(y-y')^2+(z-z')^2]^{3/2}}\\
+=&-\frac{\vec{r}}{r^3}
+\end{align*}\normalsize
+\[
+\therefore\nabla\frac{1}{r}=-\nabla'\frac{1}{r}=-\frac{\vec{r}}{r^3}
+\]
+\subsection{}
+\[
+\nabla\times\frac{\vec{r}}{r^3}=0
+\]
+\textbf{pf:}
+\begin{align*}
+\nabla\times\frac{\vec{r}}{r^3}=&(\nabla\frac{1}{r^3})\times\vec{r}+\frac{1}{r^3}\nabla\times\vec{r}\\
+\end{align*}
+where
+\begin{align*}
+\nabla\frac{1}{r^3}=&\frac{\partial\frac{1}{[(x-x')^2+(y-y')^+(z-z')^2]^{3/2}}}{\partial x}\vec{i}+\frac{\partial\frac{1}{[(x-x')^2+(y-y')^+(z-z')^2]^{3/2}}}{\partial y}\vec{j}\\
+&+\frac{\partial\frac{1}{[(x-x')^2+(y-y')^+(z-z')^2]^{3/2}}}{\partial z}\vec{k}\\
+=&-\frac{3(x-x')}{[(x-x')^2+(y-y')^+(z-z')^2]^{5/2}}\vec{i}-\frac{3(y-y')}{[(x-x')^2+(y-y')^+(z-z')^2]^{5/2}}\vec{j}\\
+&-\frac{3(z-z')}{[(x-x')^2+(y-y')^+(z-z')^2]^{5/2}}\vec{k}\\
+=&-3\frac{(x-x')\vec{i}+(y-y')\vec{j}+(z-z')\vec{k}}{[(x-x')^2+(y-y')^+(z-z')^2]^{5/2}}\\
+=&-\frac{3\vec{r}}{r^5}
+\end{align*}
+and
+\begin{align*}
+\nabla\times\vec{r}=&(\frac{\partial(z-z')}{\partial y}-\frac{\partial(y-y')}{\partial z})\vec{i}+(\frac{\partial(x-x')}{\partial z}-\frac{\partial(z-z')}{\partial x})\vec{j}+(\frac{\partial(y-y')}{\partial x}-\frac{\partial(x-x')}{\partial y})\vec{k}\\
+=&\vec{0}
+\end{align*}
+Therefore,
+\begin{align*}
+\nabla\times\frac{\vec{r}}{r^3}=&-3\frac{\vec{r}}{r^5}\times\vec{r}+\vec{r}\\
+=&\vec{0}
+\end{align*}
+\subsection{}
+\[
+\nabla\cdot\frac{\vec{r}}{r^3}=-\nabla'\cdot\frac{\vec{r}}{r^3}=0
+\]
+\textbf{pf:}
+\begin{align*}
+\nabla\cdot\frac{\vec{r}}{r^3}=&(\nabla\frac{1}{r^3})\cdot\vec{r}+\frac{1}{r^3}\nabla\cdot\vec{r}\\
+=&-\frac{3\hat{r}}{r^4}\cdot\vec{r}+\frac{3}{r^3}\\
+=&0
+\end{align*}
+where
+\[
+\nabla\frac{1}{r^3}=-\frac{3\vec{r}}{r^5}
+\]
+and
+\[
+\nabla\cdot\vec{r}=\frac{\partial(x-x')}{\partial x}+\frac{\partial(y-y')}{\partial y}+\frac{\partial(z-z')}{\partial z}=3
+\]
+So we have
+\begin{align*}
+\nabla\cdot\frac{\vec{r}}{r^3}=&-\frac{3\hat{r}}{r^5}\cdot\vec{r}+\frac{3}{r^3}\\
+=&0
+\end{align*}
+Similarly,
+\begin{align*}
+-\nabla'\cdot\frac{\vec{r}}{r^3}=&-(\nabla'\frac{1}{r^3})\cdot\vec{r}-\frac{1}{r^3}\nabla'\cdot\vec{r}\\
+=&-\frac{3\hat{r}}{r^5}\cdot\vec{r}+\frac{3}{r^3}\\
+=&0
+\end{align*}
+Therefore,
+\[
+\nabla\cdot\frac{\vec{r}}{r^3}=-\nabla'\cdot\frac{\vec{r}}{r^3}=0
+\]
+\section{}
+Show that the interaction between two fixed current loops obeys Newton's third law.
+
+\textbf{pf:} Suppose the two fixed current loops are marked as $1$ and $2$ respectively.
+The Ampere force on a short part of the current loop $2$ is
+\[
+d\vec{F}_{12}=I_2d\vec{l}_2\times\vec{B}_1=I_2d\vec{l}_2\times(\frac{\mu_0}{4\pi}\oint_{L_1}\frac{I_1d\vec{l}_1\times\vec{r}_{12}}{r_{12}^3})
+\]
+The total Ampere force on the current loop $2$ is
+\begin{align*}
+F_{12}=&\oint_{L_2}d\vec{F}_2=\frac{\mu_0I_1I_2}{4\pi}\oint_{L_2}\oint_{L_1}\frac{d\vec{l}_2\times(d\vec{l}_1\times\vec{r}_{12})}{r_{12}^3}\\
+=&\frac{\mu_0I_1I_2}{4\pi}\oint_{L_2}\oint_{L_1}\frac{(d\vec{l}_2\cdot\vec{r}_{12})d\vec{l}_1-(d\vec{l}_2\cdot d\vec{l}_1)\vec{r}_{12}}{r_{12}^3}
+\end{align*}
+where
+\begin{align*}
+\oint_{L_2}\oint_{L_1}\frac{(d\vec{l}_2\cdot\vec{r}_{12})d\vec{l}_1}{r_{12}^3}=&\oint_{L_1}d\vec{l}_1\oint_{L_2}\frac{\vec{r}_{12}\cdot d\vec{l}_2}{r_{12}^3}\\
+=&\oint_{L_1}d\vec{l}_1\iint_{S_2}\nabla\times(\frac{\vec{r}_12}{r_{12}^3})\cdot d\vec{S}_2\\
+=&\oint_{L_1}d\vec{l}_1\iint_{S_2}\vec{0}\cdot d\vec{S}_2=0
+\end{align*}
+So we have
+\[
+F_{12}=-\frac{\mu_0I_1I_2}{4\pi}\oint_{L_2}\oint_{L_1}\frac{(d\vec{l}_2\cdot d\vec{l}_{1})\vec{r}_{12}}{r_{12}^3}
+\]
+Similarly, the Ampere force on  current loop $1$ is
+\[
+F_{21}=-\frac{\mu_0I_2I_1}{4\pi}\oint_{L_1}\oint_{L_2}\frac{(d\vec{l}_1\cdot d\vec{l}_2)\vec{r}_{21}}{r_{21}^3}=\frac{\mu_0I_1I_2}{4\pi}\oint_{L_2}\oint_{L_1}\frac{(d\vec{l}_2\cdot d\vec{l}_{1})\vec{r}_{12}}{r_{12}^3}
+\]
+Therefore,
+\[
+\vec{F}_{12}=-\vec{F}_{21}
+\]
+which means the interaction between two fixed current loops obeys Newton's third law.
+\section{}
+Use the equation below to find the related equation for the conduction current $\vec{J}=n_fe\vec{v}$. Solve this equation for $\vec{E}(t)=\vec{E}_0\delta(t)$ if $\vec{J}(t<0)=0$. What is $\vec{J}$ immediately after $t=0$? Connect this with the sum rule.
+\[
+\frac{d\vec{v}}{dt}=-\gamma\vec{v}+\frac{e}{m}\vec{E}
+\]
+\textbf{Sol}: Multiply both side of the equation with $e^{\gamma t}$ and move the items with $\vec{v}$ to the left side to get
+\begin{align*}
+&e^{\gamma t}\frac{d\vec{v}}{dt}+\gamma e^{\gamma t}\vec{v}=\frac{e}{m}e^{\gamma t}\vec{E}\\
+\Longrightarrow&\frac{d(e^{\gamma t}\vec{v})}{dt}=\frac{e}{m}e^{\gamma t}\vec{E}
+\end{align*}
+Integrate both side of the equation about $t$ from $-\infty$ to $t$ to get
+\begin{align*}
+&e^{\gamma t}\vec{v}(t)=\frac{e}{m}\int_{-\infty}^{t}e^{\gamma\tau}\vec{E}(\tau)d\tau\\
+\Longrightarrow&\vec{v}(t)=\frac{e}{m}\cdot e^{-\gamma t}\int_{-\infty}^{t}e^{\gamma\tau}\vec{E}(\tau)d\tau
+\end{align*}
+The related equation for the conduction current is
+\[
+\vec{J}(t)=n_fe\vec{v}(t)=\frac{n_fe^2}{m}\cdot e^{-\gamma t}\int_{-\infty}^{t}e^{\gamma\tau}\vec{E}(\tau)d\tau
+\]
+The electricity density immediately after $t=0$ is
+\[
+\vec{J}(0^+)=\frac{n_fe^2}{m}\cdot e^{-\gamma t}\int_{-\infty}^{0^+}e^{\gamma\tau}E_0\delta(\tau)d\tau=\frac{n_fe^2E_0}{m}
+\]
+\end{document}

@@ -1,0 +1,315 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ}
+\pagestyle{fancy}
+\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}}
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+\usepackage[UTF8]{ctex}
+\lhead{Name: 陈稼霖\\ StudentID: 45875852}
+\rhead{PHYS1304 \\ Electrodynamics \\ Spring 2019 \\ Homework 4}
+\begin{document}
+
+\begin{problem}{1}
+A hollow cube has conducting walls defined by six planes $x=0$, $y=0$, $z=0$, and $x=a$, $y=a$, $z=a$. The walls $z=0$ and $z=a$ are held at a constant potential $V$. The other four sides are all at zero potential.\\
+a) Find the potential $\phi(x,y,z)$ at any point inside the cube.\\
+b) Evaluate the potential at the center of the cube numerically, accurate to three significant figures. How many terms in the series is it necessary to keep in order to attain this accuracy.\\
+c) Find the surface-charge density on the surface $z=a$.
+\end{problem}
+\begin{sol}
+\\a) Because the cube is hallow, according to Gauss's Law, we have
+\[
+\nabla^2\phi=\frac{\partial^2\phi}{\partial x^2}+\frac{\partial^2\phi}{\partial y^2}+\frac{\partial^2\phi}{\partial z^2}=0
+\]
+By the separation of variables, we assume that
+\[
+\phi(x,y,z)=X(x)Y(y)Z(z)
+\]
+Plugging into the Laplace’s equation, we get
+\[
+\frac{1}{X}\frac{d^2X}{dx^2}+\frac{1}{Y}\frac{d^2Y}{dy^2}+\frac{1}{Z}\frac{d^2Z}{dz^2}=0
+\]
+Since $x, y$ and $z$ are independent variables, each of the three terms must be separately constants
+\[
+\frac{1}{X}\frac{d^2X}{dx^2}=-\alpha^2,~~\frac{1}{Y}\frac{d^2Y}{dy^2}=-\beta^2,~~\frac{1}{Z}\frac{d^2Z}{dz^2}=-\gamma^2
+\]
+where $\gamma^2=\alpha^2+\beta^2$.\\
+The general solution is
+\begin{align*}
+\phi(x,y,z)=&\sum_{l,m,n}(C_{xl}\cos\alpha_lx+D_{xl}\sin\alpha_lx)(C_{ym}\cos\beta_my+D_{ym}\sin\beta_my)\\
+&\cdot(C_{zn}\cosh\sqrt{\alpha_l^2+\beta_m^2}z+D_{zn}\sinh\sqrt{\alpha_l^2+\beta_m^2}z)
+\end{align*}
+Since $\phi=0$ for $x=0$ and $z=0$, we get
+\[
+C_{xl}=C_{ym}=0
+\]
+hence
+\[
+X=\sin\alpha x,~~Y=\sin\beta x
+\]
+Furthermore, from $\phi=0$ for $x=a$ and $y=a$, we get
+\[
+a_l=\frac{l\pi}{a},~~\beta_m=\frac{m\pi}{a},~~\gamma_{lm}=\frac{\pi\sqrt{l^2+m^2}}{a}
+\]
+The solution is
+\[
+\phi=\sum_{l,m=1}^{\infty}\sin(\alpha_lx)\sin(\beta_my)[A_{lm}\cosh(\gamma_{lm}z)+B_{lm}\sinh(\gamma_{lm}z)]
+\]
+From $\phi=V$ for $z=0$ and $z=a$
+\[
+\phi(x,y,0)=V=\sum_{l,m=1}^{\infty}A_{lm}\sin(\alpha_lx)\sin(\beta_my)
+\]
+Multiply $\sin(\alpha_lx)\sin(\beta_my)$ on both sides and integrate over $x$ and $y$
+\[
+A_{lm}=\frac{4V}{a^2}\int_0^adx\int_0^ady\sin(\frac{l\pi}{a}x)\sin(\frac{m\pi}{a}y)=\left\{\begin{array}{ll}
+\frac{16V}{\pi^2lm},&n \text{ is odd}, m \text{ is odd}\\
+0,&\text{otherwise}
+\end{array}\right.
+\]
+Similarly, from $\phi=V$ for $z=a$
+\[
+\phi(x,y,a)=V=\sum_{l,m=1}^{\infty}\sin(\alpha_lx)\sin(\beta_my)[A_{lm}\cosh(\gamma_{lm}z)+B_{lm}\sinh(\gamma_{lm}z)]
+\]
+so
+\begin{gather*}
+\sum_{l,m=1}^{\infty}A_{lm}\sin(\alpha_lx)\sin(\beta_my)=\sum_{l,m=1}^{\infty}\sin(\alpha_lx)\sin(\beta_my)[A_{lm}\cosh(\gamma_{lm}a)+B_{lm}\sinh(\gamma_{lm}a)]\\
+\Longrightarrow A_{lm}=A_{lm}\cosh(\gamma_{lm}a)+B_{lm}\sinh(\gamma_{lm}a)\\
+\Longrightarrow B_{lm}=A_{lm}\frac{1-\cosh(\gamma_{lm}a)}{\sinh(\gamma_{lm}a)}
+\end{gather*}
+Therefore, the potential at any point inside the cube is
+\begin{align*}
+\phi(x,y,z)=\frac{16V}{\pi^2}\sum_{\text{odd }l,m}^{\infty}&\frac{1}{lm}\sin(\frac{l\pi}{a}x)\sin(\frac{m\pi}{a}y)\\
+&\cdot[\cosh(\frac{\pi\sqrt{l^2+m^2}}{a}z)+\frac{1-\cosh(\pi\sqrt{l^2+m^2})}{\sinh(\pi\sqrt{l^2+m^2})}\sinh(\frac{\pi\sqrt{l^2+m^2}}{a}z)]
+\end{align*}
+b)  The potential at the center of the cube is
+\begin{align*}
+\phi(\frac{a}{2},\frac{a}{2},\frac{a}{2})=\frac{16V}{\pi^2}\sum_{\text{odd }l,m}^{\infty}&\frac{1}{lm}\sin(\frac{l\pi}{2})\sin(\frac{m\pi}{2})\\
+&\cdot[\cosh(\frac{\pi\sqrt{l^2+m^2}}{2})+\frac{1-\cosh(\pi\sqrt{l^2+m^2})}{\sinh(\pi\sqrt{l^2+m^2})}\sinh(\frac{\pi\sqrt{l^2+m^2}}{2})]
+\end{align*}
+Let the $(l,m)$ term as
+\[
+T_{l,m}=\frac{16V}{\pi^2lm}\sin(\frac{l\pi}{2})\sin(\frac{m\pi}{2})[\cosh(\frac{\pi\sqrt{l^2+m^2}}{2})+\frac{1-\cosh(\pi\sqrt{l^2+m^2})}{\sinh(\pi\sqrt{l^2+m^2})}\sinh(\frac{\pi\sqrt{l^2+m^2}}{2})]
+\]
+Since
+\begin{align*}
+T_{1,1}=&0.34754V\\
+T_{1,3}=&T_{3,1}=-0.00752V\\
+T_{1,5}=&T_{5,1}=0.00022V\\
+T_{3,3}=&0.00046V
+\end{align*}
+We only need to add three terms, $(1,1)$ term, $(1,3)$ term and $(3,1)$ term, to reach the accuracy of three significant figures, and the number is
+\[
+\phi(\frac{a}{2},\frac{a}{2},\frac{a}{2})\approx T_{1,1}+T_{1,3}+T_{3,1}=0.333V
+\]
+c) According to Gauss's Law, the surface-charge density on the surface $z=a$ is
+\begin{align*}
+\sigma=&-\epsilon_0\frac{\partial\phi}{\partial z}|_{z=a}\\
+=&-\frac{16V\epsilon_0}{\pi^2}\sum_{\text{odd }l,m}^{\infty}\frac{1}{lm}\sin(\frac{l\pi}{a}x)\sin(\frac{m\pi}{a}y)\\
+&\cdot[\sinh(\pi\sqrt{l^2+m^2})+\frac{1-\cosh(\pi\sqrt{l^2+m^2})}{\sinh(\pi\sqrt{l^2+m^2})}\sinh(\pi\sqrt{l^2+m^2})]
+\end{align*}
+\end{sol}
+
+\begin{problem}{2}
+A spherical surface of radius $R$ has charge uniformly distributed over its surface with a density $Q/4\pi R^2$, except for a spherical cap at the north pole, defined by the cone $\theta=\alpha$.\\
+a) Show that the potential inside the spherical surface can be expressed as
+\[
+\phi=\frac{Q}{8\pi\epsilon_0}\sum_{l=0}^{\infty}\frac{1}{2l+1}[P_{l+1}(cos\alpha)-P_{l-1}(\cos\alpha)]\frac{r^l}{R^{l+1}}P_l(\cos\theta)
+\]
+where for $l=0,P_{l-1}(\cos\alpha)=-1$. What is the potential outside?\\
+b) Find the magnitude and the direction of the electric field at the origin.\\
+c) Discuss the limiting forms of the potential (part a) and electric field (part b) as the spherical cap becomes (1) very small and (2) so large that the area with charge on it becomes a very small cap at the south pole.
+\end{problem}
+\begin{sol}
+\\a) Use $\phi$ and $\phi_1$ to represent the potential inside and inside the ball, respectively. There is no charge inside and outside the spherical surface. So the potential inside and outside the spherical surface obey the Laplace's equation. It is also a symmetric system, with the straight line that goes through the center of the spherical surface and the center of the spherical cap, so construct a spherical coordinate system, whose origin is the center of the sphere and $z$ axis is along the line determined by the center of the sphere and the center of the sphere cap.\\
+At $r=0$, $\phi$ is finite. Thus the general solution of $\phi$ is
+\[
+\phi(r,\theta)=\sum_{l=0}^{\infty}a_l(\frac{r}{R})^lP_l(\cos\theta)
+\]
+As $r\to\infty$, $\phi\to0$. Hence the general solution of $\phi$ is
+\[
+\phi_1(r,\theta)=\sum_{l=0}^{\infty}d_l(\frac{R}{r})^{l+1}P_l(\cos\theta)
+\]
+At $r=R$, we have
+\[
+\phi=\phi_1
+\]
+Using the orthogonality of the Legendre polynomials, we get
+\[
+a_l=d_l
+\]
+At $r=R$, we also have
+\begin{gather*}
+-\frac{\partial\phi_1}{\partial r}|_{r=R}+\frac{\partial\phi}{\partial r}|_{r=R}=\frac{\sigma}{\epsilon_0}\\
+\Longrightarrow[\sum_{l=0}^{\infty}\frac{(n+1)a_l}{R}(\frac{R}{r})^{l+2}P_l(\cos\theta)+\sum_{l=0}^{\infty}\frac{la_l}{R}(\frac{r}{R})^{l-1}P_l(\cos\theta)]|_{r=R}=\frac{\sigma(\cos\theta)}{\epsilon_0}\\
+\Longrightarrow\sigma(\cos\theta)=\epsilon_0\sum_{l=0}^{\infty}\frac{(2l+1)a_l}{R}P_l(\cos\theta)
+\end{gather*}
+Multiply $P_l(\cos\theta)$ on both sides and integrate over $\cos\theta$ from $-1$ to $1$
+\[
+a_l=\frac{R}{2\epsilon_0}\int_{-1}^{1}\sigma(\cos\theta)P_l(\cos\theta)d(\cos\theta)
+\]
+The distribution of the surface density is
+\[
+\sigma(\cos\theta)=\left\{\begin{array}{ll}
+\frac{Q}{4\pi R^2},&\cos\theta<\cos\theta\\
+0,&\cos\theta>\cos\theta
+\end{array}\right.
+\]
+So the integral above give
+\begin{align*}
+a_l=&\frac{Q}{8\pi\epsilon_0 R}\int_{-1}^{\cos\alpha}P_l(\cos\theta)d(\cos\theta)\\
+=&\frac{Q}{8\pi\epsilon_0 R}\frac{1}{2l+1}[P_{l+1}(\cos\theta)-P_{l-1}(\cos\theta)]|_{\cos\theta=-1}^{\cos\theta=\cos\alpha}\\
+=&\frac{Q}{8\pi\epsilon_0 R}\frac{1}{2l+1}[P_{l+1}(\cos\alpha)-P_{l-1}(\cos\alpha)]
+\end{align*}
+So the potential inside the spherical surface can be expressed as
+\[
+\phi=\frac{Q}{8\pi\epsilon_0}\sum_{l=0}^{\infty}\frac{1}{2l+1}[P_{l+1}(cos\alpha)-P_{l-1}(\cos\alpha)]\frac{r^l}{R^{l+1}}P_l(\cos\theta)
+\]
+and the potential outside is
+\[
+\phi_1=\frac{Q}{8\pi\epsilon_0}\sum_{l=0}^{\infty}\frac{1}{2l+1}[P_{l+1}(cos\alpha)-P_{l-1}(\cos\alpha)]\frac{R^l}{r^{l+1}}P_l(\cos\theta)
+\]
+b) By symmetry, the direction of the electric field at the origin is along the $z$ axis (along the line determined by the center of the sphere and the center of the sphere cap as mentioned before), so we have
+\begin{align*}
+\vec{E}(\vec{0})=&-\frac{\partial\phi}{\partial r}|_{r=0}\hat{z}\\
+=-&\frac{Q}{24\pi\epsilon_0}[P_{2}(cos\alpha)-P_{0}(\cos\alpha)]\frac{1}{R^2}P_1(\cos\theta)\hat{z}\\
+=&\frac{Q\sin^2\theta}{16\pi\epsilon_0R^2}\hat{z}
+\end{align*}
+where $\hat{z}$ is the unit vector along the $z$ axis.
+c) 1) As the spherical cap becomes very small, we can consider the potential as the linear superposition of the potential of a sphere surface whose charge surface density is $Q/4\pi R^2$ and the potential of a point charge, $-\frac{Q}{4\pi R^2}\pi(R\alpha)^2$, at the north pole. In this way, the potential inside the spherical surface is
+\begin{align*}
+\phi\approx&\frac{\frac{Q}{4\pi R^2}4\pi R^2}{4\pi\epsilon_0R}-\frac{\frac{Q}{4\pi R^2}\pi(R\alpha)^2}{4\pi\epsilon_0}\frac{1}{|\vec{r}-R\hat{z}|}\\
+=&\frac{Q}{4\pi\epsilon_0R}-\frac{Q\alpha^2}{16\pi\epsilon_0}\frac{1}{|\vec{r}-R\hat{z}|}
+\end{align*}
+and the potential outside is
+\begin{align*}
+\phi\approx&\frac{\frac{Q}{4\pi R^2}4\pi R^2}{4\pi\epsilon_0r}-\frac{\frac{Q}{4\pi R^2}\pi(R\alpha)^2}{4\pi\epsilon_0}\frac{1}{|\vec{r}-R\hat{z}|}\\
+=&\frac{Q}{4\pi\epsilon_0r}-\frac{Q\alpha^2}{16\pi\epsilon_0}\frac{1}{|\vec{r}-R\hat{z}|}
+\end{align*}
+Similarly, the electric field at the origin can be regard as the linear superposition of the field of the charged sphere surface (which is $0$ inside the sphere surface) and the field of a point charge
+\[
+\vec{E}(\vec{0})=-\frac{\frac{Q}{4\pi R^2}\pi(R\alpha)^2}{4\pi\epsilon|\vec{0}-R\hat{z}|^3}(\vec{0}-R\hat{z})=\frac{Q\alpha^2}{16\pi\epsilon R^2}\hat{z}
+\]
+2) As the sphere cap becomes so large that the area with charge on it becomes a very small cap at the south pole, we can consider the charged part as a point charge, $\frac{Q}{4\pi R^2}\pi[R(\pi-\alpha)]^2$, at the south pole. In this way, the potential is
+\[
+\phi\approx\frac{\frac{Q}{4\pi R^2}\pi[R(\pi-\alpha)]^2}{4\pi\epsilon_0|\vec{r}+R\hat{z}|}=\frac{Q(\pi-\alpha)^2}{16\pi\epsilon_0|\vec{r}+R\hat{z}|}
+\]
+and the electronic field is
+\[
+\vec{E}=\frac{\frac{Q}{4\pi R^2}\pi[R(\pi-\alpha)]^2}{4\pi\epsilon R^2}\hat{z}=\frac{Q(\pi-\alpha)^2}{16\pi\epsilon R^2}\hat{z}
+\]
+\end{sol}
+
+\begin{problem}{3}
+Homework: A point charge $q$ is located in free space a distance $d$ from the center of a dielectric sphere of radius $a$ and dielectric constant $\epsilon_r$.\\
+a) Find the potential at all points in space as an expansion in spherical harmonics.\\
+b) Calculate the rectangular (Cartesian) components of the electric field near the center of the sphere.\\
+c) Verify that, in the limit $\epsilon_r\to\infty$, your result is the same as that for the conducting sphere.
+\end{problem}
+\begin{sol}
+\\a) There are two regions, divided by the surface of the sphere. Use $\phi_1$ and $\phi_2$ to represent the potential outside and inside the sphere, respectively. It is also a rotationally symmetric system, with the straight line that goes through the center of the sphere and along the line determined by the center of the sphere and the point charge.\\
+Outside the sphere, the potential is
+\[
+\phi_1=\frac{1}{4\pi\epsilon_0}\frac{q}{|\vec{r}-d\hat{z}|}+\phi_0=\frac{1}{4\pi\epsilon_0}\frac{q}{d\sqrt{1-2(\frac{r}{d})\cos\theta+(\frac{r}{d})^2}}+\phi_0
+\]
+Considering $\phi_1$ is finite if $r\to\infty$, expand the equation above in Legendre polynomials form to give
+\[
+\phi_1(r,\theta)=\left\{\begin{array}{ll}
+\sum_{l=0}^{\infty}(\frac{q}{4\pi\epsilon_0}\frac{r^n}{d^{n+1}}+\frac{b_n}{r^{n+1}})P_l(\cos\theta),&\text{if }\frac{r}{d}<1\\
+\sum_{l=0}^{\infty}(\frac{q}{4\pi\epsilon_0}\frac{d^n}{r^{n+1}}+\frac{b_n}{r^{n+1}})P_l(\cos\theta),&\text{if }\frac{r}{d}>1
+\end{array}\right.
+\]
+At $r=0$, $\phi_2$ is finite. Thus we have
+\[
+\phi_2(r,\theta)=\sum_{n=0}^{\infty}c_nr^nP_n(\cos\theta)
+\]
+At $r=a$, we have
+\begin{gather*}
+\phi_1|_{r=a}=\phi_2|_{r=a}\\
+\epsilon_0\frac{\partial\phi_1}{\partial r}|_{r=a}=\epsilon_0\epsilon_r\frac{\partial\phi_2}{\partial r}|_{r=a}
+\end{gather*}
+Plugging into the general solution, we get
+\begin{gather*}
+\sum_{l=0}^{\infty}(\frac{q}{4\pi\epsilon_0}\frac{a^n}{d^{n+1}}+\frac{b_n}{a^{n+1}})P_l(\cos\theta)=\sum_{n=0}^{\infty}c_na^nP_n(\cos\theta)\\
+\epsilon_0\sum_{l=0}^{\infty}(\frac{q}{4\pi\epsilon_0}\frac{na^{n-1}}{d^{n+1}}-\frac{(n+1)b_n}{a^{n+2}})P_l(\cos\theta)=\epsilon_0\epsilon_r\sum_{n=0}^{\infty}nc_na^{n-1}P_n(\cos\theta)
+\end{gather*}
+Using the orthogonality of the Legendre polynomials, we get
+\begin{gather*}
+\frac{q}{4\pi\epsilon_0}\frac{a^n}{d^{n+1}}+\frac{b_n}{a^{n+1}}=c_na^n\\
+\frac{q}{4\pi\epsilon_0}\frac{na^{n-1}}{d^{n+1}}-\frac{(n+1)b_n}{a^{n+2}}=\epsilon_rnc_na^{n-1}
+\end{gather*}
+Thus we have
+\begin{gather*}
+b_n=\frac{qa^{2n+1}}{4\pi\epsilon_0d^{n+1}}\frac{n(1-\epsilon_r)}{n(1+\epsilon_r)+1}\\
+c_n=\frac{q}{4\pi\epsilon_0d^{n+1}}\frac{2n+1}{(\epsilon_r+1)n+1}
+\end{gather*}
+Therefore, the potential outside the sphere is
+\[
+\phi_1(r,\theta)=\left\{\begin{array}{ll}
+\frac{q}{4\pi\epsilon_0}\sum_{l=0}^{\infty}(\frac{r^n}{d^{n+1}}+\frac{n(1-\epsilon_r)}{n(1+\epsilon_r)+1}\frac{a^{2n+1}}{d^{n+1}r^{n+1}})P_l(\cos\theta),&\text{if }\frac{r}{d}<1\\
+\frac{q}{4\pi\epsilon_0}\sum_{l=0}^{\infty}(\frac{d^n}{r^{n+1}}+\frac{n(1-\epsilon_r)}{n(1+\epsilon_r)+1}\frac{a^{2n+1}}{d^{n+1}r^{n+1}})P_l(\cos\theta),&\text{if }\frac{r}{d}>1
+\end{array}\right.
+\]
+and the potential inside is
+\[
+\phi_2(r,\theta)=\frac{q}{4\pi\epsilon_0}\sum_{n=0}^{\infty}\frac{2n+1}{(\epsilon_r+1)n+1}\frac{r^n}{d^{n+1}}P_n(\cos\theta)
+\]
+b) The electric field near the center of the sphere is
+\begin{align*}
+\vec{E}(\vec{r}\to\vec{0})=&-\nabla\phi_1=-\frac{q}{4\pi\epsilon_0}\nabla[\frac{1}{d}+\frac{3}{\epsilon_r+2}\frac{r}{d^2}\cos\theta+\frac{5}{2\epsilon_r+3}\frac{r^2}{d^3}(3\cos^2\theta-1)+...]|_{\vec{r}\to\vec{0}}\\
+=&-\frac{q}{4\pi\epsilon_0}\nabla[\frac{1}{d}+\frac{3}{\epsilon_r+2}\frac{z}{d^2}+\frac{5}{2\epsilon_r+3}\frac{x^2+y^2+z^2}{d^3}(3\frac{z^2}{x^2+y^2+z^2}-1)+...]|_{\vec{r}\to\vec{0}}\\
+=&-\frac{q}{4\pi\epsilon_0}[\frac{3}{\epsilon_r+2}\frac{\hat{z}}{d^2}+\frac{5}{2\epsilon_r+3}\frac{-x\hat{x}-y\hat{y}+2z\hat{z}}{d^3}+...]|_{\vec{r}\to\vec{0}}\\
+\approx&-\frac{3q}{4\pi\epsilon_0(\epsilon_r+2)}\frac{\hat{z}}{d^2}
+\end{align*}
+c) In the limit $\epsilon_r\to\infty$,
+\begin{gather*}
+\phi_1(r,\theta)=\left\{\begin{array}{ll}
+\frac{q}{4\pi\epsilon_0}\sum_{l=0}^{\infty}(\frac{r^n}{d^{n+1}}-\frac{a^{2n+1}}{d^{n+1}r^{n+1}})P_l(\cos\theta),&\text{if }\frac{r}{d}<1\\
+\frac{q}{4\pi\epsilon_0}\sum_{l=0}^{\infty}(\frac{d^n}{r^{n+1}}-\frac{a^{2n+1}}{d^{n+1}r^{n+1}})P_l(\cos\theta),&\text{if }\frac{r}{d}>1
+\end{array}\right.\\
+\phi_2(r,\theta)=0
+\end{gather*}
+which is the same as that for the conducting sphere.
+\end{sol}
+
+\begin{problem}{4}
+Two concentric conducting spheres of inner and outer radii $a$ and $b$, respectively, carry charges $\pm Q$. The empty space between the spheres is half-filled by a hemispherical shell of dielectric (of dielectric constant $\epsilon_r$), as shown in the figure.\\
+a) Find the electric field everywhere between the spheres.\\
+b) Calculate the surface charge distribution on the inner sphere.\\
+c) Calculate the polarization-charge density induced on the surface of the dielectric at $r=a$.
+\end{problem}
+\begin{sol}
+a) According to Gauss's Law,
+\[
+\iint_{r=r}\vec{D}\cdot d\vec{S}=\epsilon_0E_0\cdot2\pi r^2+\epsilon_0\epsilon_rE_1\cdot2\pi r^2=Q
+\]
+where $E_0$ and $E_1$ represent the electric field of empty side and dielectric side.\\
+According to the boundary condition,
+\[
+E_0=E_1
+\]
+So we have
+\[
+\vec{E}(r)=\frac{Q}{2\pi(\epsilon_0+\epsilon_0\epsilon_r)r^2}\hat{r}
+\]
+b) The surface charge distribution on empty side of the inner sphere is
+\[
+\sigma_0=D_0(a)=\epsilon_0E(a)=\frac{\epsilon_0Q}{2\pi(\epsilon_0+\epsilon_0\epsilon_r)a^2}
+\]
+The surface charge distribution on dielectric side of the inner sphere is
+\[
+\sigma_1=D_1(a)=\epsilon_0\epsilon_rE(a)=\frac{\epsilon_0\epsilon_rQ}{2\pi(\epsilon_0+\epsilon_0\epsilon_r)a^2}
+\]
+c) The polarization-charge density induced on the surface of the dielectric at $r=a$ is
+\[
+\sigma_p=\sigma_1-\frac{Q}{4\pi R^2}=\frac{Q}{2\pi(\epsilon_r+1)a^2}
+\]
+\end{sol}
+\end{document}

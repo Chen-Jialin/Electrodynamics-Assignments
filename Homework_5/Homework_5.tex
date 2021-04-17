@@ -1,0 +1,97 @@
+% !TEX program = pdflatex
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ}
+\pagestyle{fancy}
+\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}}
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+\usepackage[UTF8]{ctex}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\lhead{Name: 陈稼霖\\ StudentID: 45875852}
+\rhead{PHYS1304 \\ Electrodynamics \\ Spring 2019 \\ Homework 5}
+\begin{document}
+\begin{problem}{1}
+Following the Example 2 above, i.e., a charge $q$ is located at $(d,0,0)$, outside a grounded ball of radius $\pi$ centered at $(0,0,0)$.\\
+(a) Find the work done to remove the charge to infinity.\\
+(b) Repeat the calculation of the work done to remove the charge to infinity against the force of an isolated charged conducting ball with charge $Q$.
+\end{problem}
+\begin{sol}
+\\(a) As we have proved in Example 2, the force on the charge, $q$, is
+\[
+F=\frac{q^2R}{4\pi\epsilon_0}\frac{x}{x^4-2R^2x^2+R^4}
+\]
+when it is place at $(x,0,0)$ ($x>R$).\\
+So the work done to remove the charge to infinity is
+\[
+W=\int_d^{+\infty}Fdx=\frac{q^2R}{8\pi\epsilon_0(d^2-R^2)}
+\]
+(b) As we have proved in Example 2, the force on the charge, $q$, is
+\[
+F_1=\frac{q}{4\pi\epsilon_0}(\frac{Q}{x^2}-\frac{qR}{x^3})-F
+\]
+when it is place at $(x,0,0)$ ($x>R$) near an isolated conducting ball.\\
+So the work done to remove the charge to infinity is
+\[
+W_1=\int_d^{+\infty}F_1dx=\frac{q}{4\pi\epsilon_0}(\frac{1}{d}-\frac{qR}{2d^2}-\frac{qR}{d^2-R^2})
+\]
+\end{sol}
+
+\begin{problem}{2}
+There are two large parallel plates that are grounded. There is a charge $q$ placed between them. The distance to the first and the second plates are $d_1$ and $d_2$, respectively. Find the induced charge $Q_1$ and $Q_2$ and the plates.\\
+Solve the example above using the image charge method. (Hint: First consider the case of a wedge of vacuum with conducting boundaries, with the angle of $\pi/n$, and a charge $q$ placed in it. Then take the limit of $\rho,n\to\infty$, where $\rho$ is the distance between the charge and the edge.)
+\end{problem}
+\begin{sol}
+
+\end{sol}
+
+\begin{problem}{3}
+a) Show that the Green function $G(x,x',y,y')$ appropriate for Dirichlet boundary conditions for a square two-dimensional region, $0\leq x\leq1$, $0\leq y\leq1$, has an expression:
+\[
+G(x,x'y,y')=2\sum_{n=1}^{\infty}g_n\sin(n\pi x)\sin(n\pi x')
+\]
+where $g_n(y,y')$ satisfies
+\[
+(\frac{\partial^2}{\partial y'^2}-n^2\pi^2)g_n(y,y')=-4\pi\delta(y-y')
+\]
+and $g_n(y,0)=g_n(y,1)=0$.\\
+b) Taking for $g_n(y,y')$ appropriate linear combinations of $\sinh(n\pi y')$ and $\cosh(n\pi y')$ in the two regions, $y'<y$ and $y'>y$, in accord with the boundary conditions and the discontinuity in slope required by the source delta function, show that the explicit form of $G$ is
+\[
+G(x,x',y,y')=8\sum_{n=1}\frac{1}{n\sinh(n\pi)}\sin(n\pi x)\sin(n\pi x')\sinh(n\pi y_<)\sinh[n\pi(1-y_>)]
+\]
+where $y_<(y_>)$ is the smaller (larger) of $y$ and $y'$.
+\end{problem}
+\begin{sol}
+
+\end{sol}
+
+\begin{problem}{4}
+A two-dimensional potential exists on a unit square area ($0\leq x\leq1$, $0\leq y\leq1$) bounded by “surfaces” held at zero potential. Over the entire square there is a uniform charge density of unit strength (per unit length in $z$). Using the Green function of the previous problem, show that
+\[
+\phi(x,y)=\frac{4}{\pi^3\epsilon_0}\sum_{m=0}^{\infty}\frac{\sin[(2m+1)\pi x]}{(2m+1)^3}\{1-\frac{\cosh[(2m+1)\pi(y-1/2)]}{\cosh[(2m+1)\pi/2]}\}
+\]
+\end{problem}
+\begin{sol}
+
+\end{sol}
+
+\begin{problem}{5}
+Find the electric quadrupole moment of the problem above. One more problem is problem 5 on page 71 of the textbook.\\
+空心导体球壳的内外半径为$R_1$和$R_2$，球中心置一偶极子$\bm{p}$，球壳上带电$Q$，求空间各点电势和电荷分布。
+\end{problem}
+\begin{sol}
+The electric quadrupole moment of the first problem is
+\[
+\mathscr{D}_{33}=\frac{l}{2}\frac{l}{2}Q-\frac{l}{2}\frac{l}{2}Q=0
+\]
+\end{sol}
+\end{document}
